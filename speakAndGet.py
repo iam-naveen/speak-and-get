@@ -9,10 +9,10 @@ def getTextFromUser() -> str:
         text = ""
         while text == "":
             # getting audio data from the default microphone
-            audio_data = r.record(source, duration=2)
+            audio_data = r.record(source, duration=5)
             try:
                 # convert speech to text
-                text = r.recognize_google(audio_data)
+                text = r.recognize_google_cloud(audio_data)
             except:
                 print("Can't Recognise Word!! Try again or Speak END to stop...")
     return text
@@ -44,8 +44,8 @@ while True:
         options: list[str] = e.options
         for i, option in enumerate(options):
             print(f"{i+1}. {option}")
-        input: int = int(input("Enter the number of your choice: "))
-        search = results[input-1]
+        userInput: int = int(input("Enter the number of your choice: "))
+        search = results[userInput-1]
         result = wikipedia.summary(search, auto_suggest=False, redirect=False, sentences=2)
 
     print("\n\n" + result) 
